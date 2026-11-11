@@ -150,39 +150,17 @@ h2.title{font-size:min(7.8vw,5.2rem);margin-bottom:36px}
 .hero-name{font-size:1.7rem;line-height:1;margin:0 0 10px}
 .hero-name b{font-weight:700}.hero-name span{font-weight:300}
 .hero-meta{margin-bottom:26px;color:var(--muted)}
-/* Galería */
-.gallery{margin-top:44px}
-.gal-track{--w:27vw;--wa:54vw;display:flex;align-items:center;gap:8px;overflow-x:auto;margin:0 calc(var(--pad)*-1);padding:6px var(--pad) 14px;scrollbar-width:none;cursor:grab}
-.gal-track::-webkit-scrollbar{display:none}
-.gal-track.drag{cursor:grabbing}
-.gal-track.drag img{pointer-events:none}
-.gal-item{position:relative;flex:none;width:var(--w);margin:0;cursor:pointer;transition:width .7s cubic-bezier(.2,.7,.2,1)}
-.gal-item:first-child{margin-left:auto}.gal-item:last-child{margin-right:auto}
-.gal-item.on{width:var(--wa);cursor:default}
-.gal-item .ph{aspect-ratio:3/4;overflow:hidden;border-radius:var(--radius);background:#ececec}
-.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1),filter .5s;user-select:none;-webkit-user-drag:none}
-.gal-item .ph{transition:opacity .6s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
-.gal-item:not(.on) .ph{opacity:.62;transform:translateY(10px)}
-.gal-item:not(.on):hover .ph{opacity:1;transform:translateY(0)}
-.gal-item:not(.on):hover img{transform:scale(1.05)}
-.gal-item.on img{animation:kb 9s ease-in-out infinite alternate}
-.gal-item.on.pop img{animation:popin .9s cubic-bezier(.2,.7,.2,1),kb 9s .9s ease-in-out infinite alternate}
-@keyframes kb{from{transform:scale(1) translate(0,0)}to{transform:scale(1.07) translate(-1.5%,-1%)}}
-@keyframes popin{from{opacity:.4;transform:scale(1.12)}to{opacity:1;transform:scale(1)}}
-.gal-prog{height:1px;background:rgba(0,0,0,.15);margin-top:14px;overflow:hidden}
-.gal-prog i{display:block;height:100%;width:100%;background:var(--red);transform-origin:0 50%;transform:scaleX(0)}
-.gal-prog.run i{transform:scaleX(1);transition:transform var(--gdur,4.5s) linear}
-.gal-item figcaption{position:absolute;left:0;top:100%;margin-top:10px;white-space:nowrap;font-size:12px;text-transform:uppercase;opacity:0;transform:translateY(-4px);transition:opacity .4s,transform .4s}
-.gal-item figcaption b{color:var(--red);font-weight:400;margin-right:8px}
-.gal-item.on figcaption{opacity:1;transform:none;transition-delay:.35s}
-.gal-ctrl{display:flex;justify-content:space-between;align-items:center;margin-top:4px}
-.gal-btns{display:flex;gap:8px}
-.gal-btn{width:46px;height:46px;border-radius:999px;border:1px solid #000;background:transparent;display:grid;place-items:center;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
-.gal-btn:hover{background:var(--red);border-color:var(--red);color:#fff}
-.gal-btn:disabled{opacity:.3;cursor:default;background:transparent;color:#000;border-color:#000}
-.gal-btn svg{width:16px;height:16px}
-.js .gallery .gal-item{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease,width .7s cubic-bezier(.2,.7,.2,1)}
-.js .gallery.in .gal-item{opacity:1;transform:none}
+/* Galería: carrusel 3D (coverflow) */
+.gallery{margin:40px calc(var(--pad)*-1) 0;position:relative;overflow:hidden}
+.cf{--w:min(48vw,300px);position:relative;height:calc(var(--w)*4/3 + 80px);perspective:1300px;perspective-origin:50% 40%;touch-action:pan-y;user-select:none}
+.cf::after{content:"";position:absolute;left:50%;bottom:22px;width:calc(var(--w)*3.4);height:28px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(0,0,0,.16),rgba(0,0,0,0));filter:blur(4px);pointer-events:none}
+.cf-card{position:absolute;left:50%;top:16px;width:var(--w);aspect-ratio:3/4;margin-left:calc(var(--w)/-2);border-radius:14%/10.5%;overflow:hidden;background:#ececec;cursor:pointer;transform-style:preserve-3d;will-change:transform,opacity;
+  transition:transform .9s cubic-bezier(.22,.8,.24,1),opacity .9s ease,filter .9s ease,box-shadow .9s ease;box-shadow:0 18px 30px -18px rgba(0,0,0,.35)}
+.cf-card img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;-webkit-user-drag:none}
+.cf-card.c0{cursor:default;box-shadow:0 30px 50px -22px rgba(0,0,0,.45)}
+.cf-card.jump{transition:none}
+/* Entrada: apiladas en el centro, grises y transparentes */
+.js .gallery:not(.in) .cf-card{transform:translate3d(calc(var(--d)*18px),0,-160px) scale(.62)!important;opacity:.35!important;filter:grayscale(1)}
 
 /* ---------- 02 ---------- */
 .exp-grid{display:grid;gap:56px}
@@ -320,8 +298,8 @@ h2.title{font-size:min(7.8vw,5.2rem);margin-bottom:36px}
 @media (min-width:860px){
   section{padding:110px 0 120px}
   .hero{padding-top:72px}
-  .gallery{margin-top:64px}
-  .gal-track{gap:14px;--w:min(13vw,230px);--wa:min(26vw,440px)}
+  .gallery{margin-top:60px}
+  .cf{--w:min(21vw,340px)}
   .hero-grid{grid-template-columns:repeat(12,1fr);gap:0 32px;margin-top:80px;align-items:start}
   .hero-grid .who{grid-column:1 / span 4}
   .hero-grid .txt{grid-column:6 / span 7}
@@ -343,8 +321,7 @@ h2.title{font-size:min(7.8vw,5.2rem);margin-bottom:36px}
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .gal-item.on img,.gal-item.on.pop img{animation:none!important}
-  .js .reveal,.js .hero h1 .line > span,.bub,.js .gallery .gal-item{transition:none!important;transform:none!important;opacity:1!important}
+  .js .reveal,.js .hero h1 .line > span,.bub{transition:none!important;transform:none!important;opacity:1!important}
   .wave.in .b,.wave.in .l{animation:none}
   .acc-panel,.acc-ico,.acc-title{transition:none}
 }
@@ -373,15 +350,7 @@ h2.title{font-size:min(7.8vw,5.2rem);margin-bottom:36px}
     </h1>
 
     <div class="gallery" id="gallery">
-      <div class="gal-track" id="gal-track" tabindex="0" role="region" aria-label="Galería de fotos de Mario"></div>
-      <div class="gal-prog" id="gal-prog" aria-hidden="true"><i></i></div>
-      <div class="gal-ctrl">
-        <span class="up muted" id="gal-count" aria-live="polite">01 / 05</span>
-        <div class="gal-btns">
-          <button class="gal-btn" id="gal-prev" aria-label="Foto anterior"><svg viewBox="0 0 16 16"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
-          <button class="gal-btn" id="gal-next" aria-label="Foto siguiente"><svg viewBox="0 0 16 16"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
-        </div>
-      </div>
+      <div class="cf" id="cf" tabindex="0" role="region" aria-roledescription="carrusel" aria-label="Fotos de Mario"></div>
     </div>
 
     <div class="hero-grid">
@@ -731,56 +700,59 @@ CONFIG.reels.forEach((r,i) => {
 });
 
 
-// Galería: todas iguales, la elegida se agranda
+// Galería: carrusel 3D que gira solo
 (() => {
-  const track = document.getElementById("gal-track"), wrap = document.getElementById("gallery");
-  const total = CONFIG.galeria.length;
-  CONFIG.galeria.forEach((g,i) => {
-    const f = document.createElement("figure");
-    f.className = "gal-item";
-    f.style.transitionDelay = (i*0.08) + "s, " + (i*0.08) + "s, 0s";
-    f.innerHTML = `<div class="ph"><img src="${g.src}" alt="${g.alt}" decoding="async" draggable="false" style="object-position:${g.foco || "50% 50%"}"></div>`;
-    f.addEventListener("click", () => { if(!dragged) set(i); });
-    track.appendChild(f);
+  const stage = document.getElementById("cf"), wrap = document.getElementById("gallery");
+  const fotos = CONFIG.galeria, n = fotos.length, DUR = 2600;
+  const cards = fotos.map((g,i) => {
+    const c = document.createElement("div");
+    c.className = "cf-card";
+    c.innerHTML = `<img src="${g.src}" alt="${g.alt}" decoding="async" draggable="false" style="object-position:${g.foco || "50% 50%"}">`;
+    c.addEventListener("click", () => { if(!moved){ go(i); hold(); } });
+    stage.appendChild(c); return c;
   });
-  const items = [...track.children];
-  const count = document.getElementById("gal-count"), prev = document.getElementById("gal-prev"), next = document.getElementById("gal-next");
-  let active = Math.floor(total/2), dragged = false;
-  const center = smooth => {
-    const it = items[active];
-    track.scrollTo({left: it.offsetLeft + it.offsetWidth/2 - track.clientWidth/2, behavior: smooth ? "smooth" : "auto"});
+  let active = 0, lastD = new Array(n).fill(null);
+  // Posición de cada tarjeta según su distancia al centro
+  const pose = d => {
+    const a = Math.abs(d), s = Math.sign(d);
+    const x = [0, 1.2, 2.02][a] ?? 2.4, rot = [0, 10, 48][a] ?? 70, z = [0, -220, -480][a] ?? -600, sc = [1, .9, .82][a] ?? .6;
+    return { t: `translate3d(calc(var(--w) * ${s*x}),0,${z}px) rotateY(${-s*rot}deg) scale(${sc})`, o: a > 2 ? 0 : 1, zi: 10 - a };
   };
-  function set(i, auto){
-    active = Math.max(0, Math.min(total-1, i));
-    items.forEach((it,k) => { it.classList.toggle("on", k === active); it.classList.remove("pop"); it.setAttribute("aria-current", k === active ? "true" : "false"); });
-    void items[active].offsetWidth; items[active].classList.add("pop");
-    if(!auto) pauseAuto();
-    restartProg();
-    count.textContent = String(active+1).padStart(2,"0") + " / " + String(total).padStart(2,"0");
-    prev.disabled = active === 0; next.disabled = active === total-1;
-    center(true); setTimeout(() => center(true), 720);
+  function render(){
+    cards.forEach((c,i) => {
+      let d = ((i - active) % n + n) % n; if(d > n/2) d -= n;
+      const p = pose(d);
+      const jumped = lastD[i] !== null && Math.abs(d - lastD[i]) > 2;
+      c.style.setProperty("--d", d);
+      if(jumped){ c.classList.add("jump"); c.style.opacity = 0; }
+      c.style.transform = p.t; c.style.zIndex = p.zi;
+      c.classList.toggle("c0", d === 0);
+      c.setAttribute("aria-hidden", d === 0 ? "false" : "true");
+      if(jumped){ requestAnimationFrame(() => requestAnimationFrame(() => { c.classList.remove("jump"); c.style.opacity = p.o; })); }
+      else c.style.opacity = p.o;
+      lastD[i] = d;
+    });
   }
-  // Avance automático mientras la galería está a la vista (se pausa si el usuario interactúa)
-  const prog = document.getElementById("gal-prog"), DUR = 3500;
-  let timer = null, inView = false, pausedUntil = 0;
-  function restartProg(){ prog.classList.remove("run"); void prog.offsetWidth; if(inView && Date.now() >= pausedUntil) prog.classList.add("run"); }
-  function pauseAuto(){ pausedUntil = Date.now() + 6000; }
-  function tick(){ if(inView && Date.now() >= pausedUntil && !document.hidden){ set((active+1) % total, true); } else { restartProg(); } }
-  prog.style.setProperty("--gdur", DUR/1000 + "s");
+  function go(i){ active = ((i % n) + n) % n; render(); }
+  // Giro automático (se pausa unos segundos si alguien interactúa)
+  let pausedUntil = 0, inView = false, timer = null;
+  const hold = () => { pausedUntil = Date.now() + 5000; };
+  const tick = () => { if(inView && !document.hidden && Date.now() >= pausedUntil) go(active + 1); };
   new IntersectionObserver(es => es.forEach(e => {
-    inView = e.isIntersecting; clearInterval(timer);
-    if(inView){ restartProg(); timer = setInterval(tick, DUR); }
-  }), {threshold:.15}).observe(track);
-  prev.addEventListener("click", () => set(active-1)); next.addEventListener("click", () => set(active+1));
-  track.addEventListener("keydown", e => { if(e.key === "ArrowRight"){ e.preventDefault(); set(active+1); } if(e.key === "ArrowLeft"){ e.preventDefault(); set(active-1); } });
-  addEventListener("resize", () => center(false));
-  set(active, true); requestAnimationFrame(() => center(false));
-  // Arrastrar con el mouse en desktop
-  let down = false, sx = 0, sl = 0;
-  track.addEventListener("pointerdown", e => { pauseAuto(); if(e.pointerType !== "mouse") return; down = true; dragged = false; sx = e.clientX; sl = track.scrollLeft; });
-  addEventListener("pointermove", e => { if(!down) return; const dx = e.clientX - sx; if(Math.abs(dx) > 5){ dragged = true; track.classList.add("drag"); } if(dragged) track.scrollLeft = sl - dx; });
-  addEventListener("pointerup", () => { if(!down) return; down = false; track.classList.remove("drag"); setTimeout(() => dragged = false, 0); });
-  new IntersectionObserver((es,o) => es.forEach(e => { if(e.isIntersecting){ wrap.classList.add("in"); o.disconnect(); } }), {threshold:.1}).observe(wrap);
+    inView = e.isIntersecting;
+    if(inView){ wrap.classList.add("in"); clearInterval(timer); timer = setInterval(tick, DUR); } else clearInterval(timer);
+  }), {threshold:.2}).observe(stage);
+  // Deslizar con el dedo o arrastrar con el mouse
+  let sx = null, moved = false;
+  stage.addEventListener("pointerdown", e => { sx = e.clientX; moved = false; });
+  addEventListener("pointermove", e => { if(sx !== null && Math.abs(e.clientX - sx) > 8) moved = true; });
+  addEventListener("pointerup", e => {
+    if(sx === null) return; const dx = e.clientX - sx; sx = null;
+    if(Math.abs(dx) > 40){ go(active + (dx < 0 ? 1 : -1)); hold(); }
+    setTimeout(() => moved = false, 0);
+  });
+  stage.addEventListener("keydown", e => { if(e.key === "ArrowRight"){ go(active+1); hold(); } if(e.key === "ArrowLeft"){ go(active-1); hold(); } });
+  render();
 })();
 function reduceMotion(){ return window.matchMedia("(prefers-reduced-motion: reduce)").matches; }
 
