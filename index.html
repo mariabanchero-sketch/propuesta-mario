@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mario Gabriel Pizzorno — Presentación</title>
+<meta name="description" content="Presentación personal de Mario Gabriel Pizzorno para el puesto de vendedor digital.">
+
+<script>
+/* =====================================================================
+   CONFIGURACIÓN — TODO LO REEMPLAZABLE ESTÁ ACÁ
+   ---------------------------------------------------------------------
+   · src:   ruta o URL de una foto (ej. "img/mario.jpg"). Vacío = se muestra
+            la ilustración de ejemplo.
+   · video: ruta o URL de un video (ej. "video/reel-producto.mp4").
+            Si hay video, la tarjeta se vuelve reproducible. "src" se usa
+            como portada (poster).
+   · instagramUrl: link al perfil. Vacío = el botón
+            queda como "link pendiente" (no se inventan direcciones).
+   Recomendado: fotos verticales 4:5 y reels 9:16 en su resolución original,
+   videos MP4 H.264.
+   ===================================================================== */
+const CONFIG = {
+  instagramUrl: "https://www.instagram.com/savagesh0p/",
+  localUsuario: "fruta.in",   // cuenta del local que aparece en la historia de ejemplo
+
+  // Galería de la presentación (todas del mismo tamaño; la elegida se agranda).
+  // foco: qué parte de la foto se prioriza al recortar ("50% 50%" = centro).
+  galeria: [
+    { src: "img/mario-1.jpg", alt: "Mario sentado frente al espejo", formato: "alto",  foco: "50% 60%" },
+    { src: "img/mario-2.jpg", alt: "Mario frente al espejo del arco", formato: "medio", foco: "50% 58%" },
+    { src: "img/mario-3.jpg", alt: "Mario con luz violeta de noche", formato: "alto",  foco: "50% 55%" },
+    { src: "img/mario-4.jpg", alt: "Mario con su gato frente al espejo", formato: "ancho", foco: "50% 50%" },
+    { src: "img/mario-5.jpg", alt: "Mario con gorra junto a la mesa de gorras", formato: "medio", foco: "50% 56%" }
+  ],
+
+  // Mi emprendimiento: dos celulares (captura del feed + video)
+  emprendimiento: {
+    feed:  { src: "img/feed-emprendimiento.jpg", alt: "Feed de Instagram del emprendimiento de Mario" },
+    // video: ruta del video (ej. "video/emprendimiento.mp4"). Se reproduce sin sonido y en loop,
+    // solo el fragmento entre "inicio" y "fin" (en segundos). Vacío = espacio reservado.
+    video: { src: "video/emprendimiento.mp4", poster: "img/poster-emprendimiento.jpg", inicio: 0, fin: 0, alt: "Video del emprendimiento de Mario" }
+  },
+
+  reels: [
+    { titulo: "Producto",       descripcion: "Cómo muestro una prenda, sus detalles y características.",          src: "img/poster-reel-producto.jpg", video: "video/reel-producto.mp4", ejemplo: "reelProducto" },
+    { titulo: "Contenido",      descripcion: "Cómo presento outfits, combinaciones y formas de usar la ropa.",   src: "img/poster-reel-contenido.jpg", video: "video/reel-contenido.mp4", ejemplo: "reelContenido" },
+    { titulo: "Emprendimiento", descripcion: "Cómo comunico novedades, nuevos ingresos y productos disponibles.", src: "img/emprendimiento-gorras.jpg", foco: "50% 72%", video: "", ejemplo: "reelEmprendimiento" }
+  ],
+
+  // Ejemplos de MOSTRAR / CONECTAR / VENDER
+  ejemplos: {
+    tresLooks: [   // se van alternando como un reel
+      { src: "img/mario-2.jpg", foco: "50% 60%" },
+      { src: "img/mario-1.jpg", foco: "50% 60%" },
+      { src: "img/mario-5.jpg", foco: "50% 60%" }
+    ],
+    algoNuevo: [
+      { src: "img/nuevo-1.5.jpg", foco: "50% 60%" },
+      { src: "img/nuevo-9.5.jpg", foco: "50% 60%" },
+      { src: "img/nuevo-17.5.jpg", foco: "50% 55%" }
+    ],
+    historiaFondo: "img/emprendimiento-gorras.jpg",
+    look01: { src: "img/mario-3.jpg", alt: "Look 01", foco: "50% 58%" },
+    look02: { src: "img/mario-4.jpg", alt: "Look 02", foco: "52% 62%" },
+    chatFotos: [
+      { src: "img/mario-2.jpg", alt: "Cómo queda puesto el jean", foco: "50% 82%" }
+    ]
+  }
+};
+</script>
+
+<style>
+/* Helvetica Now Display: colocar los archivos en /fonts con estos nombres.
+   Mientras no estén, se usa la Helvetica instalada en el dispositivo. */
+@font-face{font-family:"HND";font-weight:300;font-display:swap;src:local("Helvetica Now Display Light"),local("HelveticaNowDisplay-Light"),url("fonts/HelveticaNowDisplay-Light.woff2") format("woff2")}
+@font-face{font-family:"HND";font-weight:400;font-display:swap;src:local("Helvetica Now Display"),local("HelveticaNowDisplay-Regular"),url("fonts/HelveticaNowDisplay-Regular.woff2") format("woff2")}
+@font-face{font-family:"HND";font-weight:500;font-display:swap;src:local("Helvetica Now Display Medium"),local("HelveticaNowDisplay-Medium"),url("fonts/HelveticaNowDisplay-Medium.woff2") format("woff2")}
+@font-face{font-family:"HND";font-weight:700;font-display:swap;src:local("Helvetica Now Display Bold"),local("HelveticaNowDisplay-Bold"),url("fonts/HelveticaNowDisplay-Bold.woff2") format("woff2")}
+
+:root{
+  --red:#ff1a0a;
+  --font:"HND","Helvetica Now Display","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --pad:clamp(20px,4.5vw,72px);
+  --radius:16px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:#fff;color:#000;font-family:var(--font);font-weight:400;font-size:17px;line-height:1.5;letter-spacing:-0.02em;-webkit-font-smoothing:antialiased;hyphens:none;-webkit-hyphens:none;overflow-wrap:normal;word-break:normal}
+img,video,svg{display:block;max-width:100%}
+p{margin:0 0 1em}
+button{font:inherit;color:inherit;letter-spacing:inherit}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:6px}
+
+.wrap{width:100%;max-width:1680px;margin:0 auto;padding:0 var(--pad)}
+.up{text-transform:uppercase;font-weight:400;font-size:13px;letter-spacing:-0.02em;line-height:1.2}
+
+/* ---------- Header sólido negro ---------- */
+.top{position:sticky;top:0;z-index:20;background:#000;color:#fff}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;height:52px}
+.top .count{opacity:.7}
+.top .progress{position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--red);transform-origin:0 50%;transform:scaleX(var(--p,0))}
+
+/* ---------- Secciones blanco / negro ---------- */
+section{padding:72px 0 88px}
+.s-white{background:#fff;color:#000;--muted:rgba(0,0,0,.6);--line:rgba(0,0,0,.16);--fg:#000;--bg:#fff}
+.s-black{background:#000;color:#fff;--muted:rgba(255,255,255,.62);--line:rgba(255,255,255,.22);--fg:#fff;--bg:#000}
+.muted{color:var(--muted)}
+.label{display:flex;align-items:center;gap:10px;margin-bottom:28px}
+.label::before{content:"";width:8px;height:8px;background:var(--red);border-radius:50%}
+.label .n{color:var(--red)}
+
+/* Títulos: formato oración, Bold/Light, line-height 82% */
+.title{margin:0;line-height:.82;letter-spacing:-0.02em;font-weight:300}
+.title .line{display:block;white-space:nowrap;padding-bottom:.08em}
+.title b,.title .b{font-weight:700}
+.title .l{font-weight:300}
+h1.title{font-size:min(9.4vw,6.4rem)}
+h2.title{font-size:min(7.8vw,5.2rem);margin-bottom:36px}
+.red{color:var(--red)}
+.lead{font-size:1.14rem;line-height:1.45}
+
+/* Ola de peso: cada palabra alterna Bold ↔ Light en loop */
+@keyframes toLight{0%,40%{font-weight:700}50%,90%{font-weight:300}100%{font-weight:700}}
+@keyframes toBold{0%,40%{font-weight:300}50%,90%{font-weight:700}100%{font-weight:300}}
+.wave.in .b{animation:toLight 3s infinite}
+.wave.in .l{animation:toBold 3s infinite}
+
+/* ---------- Media ---------- */
+.media{position:relative;overflow:hidden;border-radius:var(--radius);background:#ececec}
+.media > img,.media > video,.media > svg{width:100%;height:100%;object-fit:cover}
+.r45{aspect-ratio:4/5}
+.r916{aspect-ratio:9/16}
+.chip{position:absolute;left:10px;top:10px;background:#fff;color:#000;padding:6px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:-0.02em;line-height:1;pointer-events:none}
+.chip.dark{background:#000;color:#fff}
+.reel .chip{top:auto;left:auto;bottom:10px;right:10px}
+.playbtn{position:absolute;inset:0;margin:auto;width:60px;height:60px;border-radius:50%;border:0;background:#fff;display:grid;place-items:center;cursor:pointer;transition:transform .25s ease,opacity .25s ease,background .2s}
+.playbtn:hover{background:var(--red)}
+.playing .playbtn{opacity:0}
+.soundbtn{position:absolute;right:10px;top:10px;width:38px;height:38px;border-radius:999px;border:0;background:rgba(0,0,0,.55);color:#fff;display:grid;place-items:center;cursor:pointer;transition:background .2s}
+.soundbtn:hover,.soundbtn[aria-pressed="true"]{background:var(--red)}
+.media video{cursor:pointer}
+.playing:hover .playbtn{opacity:.9}
+
+/* ---------- 01 ---------- */
+.hero{padding-top:48px}
+.hero h1 .line{overflow:hidden;padding-bottom:.16em;margin-bottom:-.16em}
+.hero h1 .line > span{display:inline-block}
+.hero-grid{display:grid;gap:28px;margin-top:40px}
+.hero-name{font-size:1.7rem;line-height:1;margin:0 0 10px}
+.hero-name b{font-weight:700}.hero-name span{font-weight:300}
+.hero-meta{margin-bottom:26px;color:var(--muted)}
+/* Galería */
+.gallery{margin-top:44px}
+.gal-track{--w:27vw;--wa:54vw;display:flex;align-items:center;gap:8px;overflow-x:auto;margin:0 calc(var(--pad)*-1);padding:6px var(--pad) 46px;scrollbar-width:none;cursor:grab}
+.gal-track::-webkit-scrollbar{display:none}
+.gal-track.drag{cursor:grabbing}
+.gal-track.drag img{pointer-events:none}
+.gal-item{position:relative;flex:none;width:var(--w);margin:0;cursor:pointer;transition:width .7s cubic-bezier(.2,.7,.2,1)}
+.gal-item:first-child{margin-left:auto}.gal-item:last-child{margin-right:auto}
+.gal-item.on{width:var(--wa);cursor:default}
+.gal-item .ph{aspect-ratio:3/4;overflow:hidden;border-radius:var(--radius);background:#ececec}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1),filter .5s;user-select:none;-webkit-user-drag:none}
+.gal-item .ph{transition:opacity .6s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.gal-item:not(.on) .ph{opacity:.62;transform:translateY(10px)}
+.gal-item:not(.on):hover .ph{opacity:1;transform:translateY(0)}
+.gal-item:not(.on):hover img{transform:scale(1.05)}
+.gal-item.on img{animation:kb 9s ease-in-out infinite alternate}
+.gal-item.on.pop img{animation:popin .9s cubic-bezier(.2,.7,.2,1),kb 9s .9s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1) translate(0,0)}to{transform:scale(1.07) translate(-1.5%,-1%)}}
+@keyframes popin{from{opacity:.4;transform:scale(1.12)}to{opacity:1;transform:scale(1)}}
+.gal-prog{height:1px;background:rgba(0,0,0,.15);margin-top:14px;overflow:hidden}
+.gal-prog i{display:block;height:100%;width:100%;background:var(--red);transform-origin:0 50%;transform:scaleX(0)}
+.gal-prog.run i{transform:scaleX(1);transition:transform var(--gdur,4.5s) linear}
+.gal-item figcaption{position:absolute;left:0;top:100%;margin-top:10px;white-space:nowrap;font-size:12px;text-transform:uppercase;opacity:0;transform:translateY(-4px);transition:opacity .4s,transform .4s}
+.gal-item figcaption b{color:var(--red);font-weight:400;margin-right:8px}
+.gal-item.on figcaption{opacity:1;transform:none;transition-delay:.35s}
+.gal-ctrl{display:flex;justify-content:space-between;align-items:center;margin-top:4px}
+.gal-btns{display:flex;gap:8px}
+.gal-btn{width:46px;height:46px;border-radius:999px;border:1px solid #000;background:transparent;display:grid;place-items:center;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.gal-btn:hover{background:var(--red);border-color:var(--red);color:#fff}
+.gal-btn:disabled{opacity:.3;cursor:default;background:transparent;color:#000;border-color:#000}
+.gal-btn svg{width:16px;height:16px}
+.js .gallery .gal-item{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease,width .7s cubic-bezier(.2,.7,.2,1)}
+.js .gallery.in .gal-item{opacity:1;transform:none}
+
+/* ---------- 02 ---------- */
+.exp-grid{display:grid;gap:56px}
+.exp figure{margin:0 0 22px;max-width:480px}
+/* Mockups de celular */
+.phones{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:520px;margin:0 0 28px}
+.phones{padding-top:44px}
+.phone{position:relative;background:#161616;border-radius:16% / 7.4%;padding:4.2%;box-shadow:inset 0 0 0 1px rgba(255,255,255,.22),0 0 0 1px rgba(255,255,255,.06)}
+.phone::before{content:"";position:absolute;right:-2px;top:22%;width:2px;height:11%;background:#2b2b2b;border-radius:2px}
+.phone-screen{position:relative;aspect-ratio:1290/2796;border-radius:12% / 5.6%;overflow:hidden;background:#000}
+.phone-screen img,.phone-screen video{width:100%;height:100%;object-fit:cover;display:block}
+.phone-island{position:absolute;top:4.3%;left:50%;transform:translateX(-50%);width:31%;aspect-ratio:3.4/1;background:#000;border-radius:999px;z-index:2}
+.phone-empty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:0 12%;color:rgba(255,255,255,.7);background:#0d0d0d}
+.phone-empty .ring{width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.4);display:grid;place-items:center;animation:pulse 2.4s ease-in-out infinite}
+.phone-empty .ring svg{width:16px;height:16px;margin-left:3px}
+.phone-empty span{font-size:11px;text-transform:uppercase;line-height:1.25}
+@keyframes pulse{0%,100%{transform:scale(1);border-color:rgba(255,255,255,.35)}50%{transform:scale(1.08);border-color:#ff1a0a}}
+.phone-cap{margin-top:10px;color:var(--muted);font-size:11px;text-transform:uppercase}
+.exp-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-top:1px solid var(--fg);padding-top:14px;margin-bottom:14px}
+.exp-head h3{margin:0;font-size:1.6rem;line-height:.82;font-weight:300}
+.exp-head h3 b{font-weight:700}
+.exp p{max-width:34em}
+
+/* ---------- 03 ---------- */
+.redes{display:grid;gap:36px}
+.redes > *{min-width:0}
+.reels{display:grid;grid-auto-flow:column;grid-auto-columns:70%;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 calc(var(--pad)*-1);padding:0 var(--pad) 8px;scrollbar-width:none}
+.reels::-webkit-scrollbar{display:none}
+.reel{scroll-snap-align:start;margin:0}
+.reel figcaption{padding-top:12px}
+.reel h3{margin:0 0 4px;font-size:1.15rem;line-height:1;font-weight:700}
+.reel h3 small{font-size:12px;font-weight:400;color:var(--red);margin-right:8px}
+.reel p{font-size:.95rem;color:var(--muted);margin:0;line-height:1.4}
+.swipe-hint{margin-top:12px;color:var(--muted)}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.btn{display:inline-flex;align-items:center;gap:14px;padding:16px 24px;border-radius:999px;border:1px solid var(--red);background:var(--red);color:#fff;text-decoration:none;font-size:13px;text-transform:uppercase;letter-spacing:-0.02em;transition:background .2s ease,color .2s ease,border-color .2s ease}
+.btn:hover{background:var(--fg);border-color:var(--fg);color:var(--bg)}
+.btn.outline{background:transparent;color:var(--fg);border-color:var(--fg)}
+.btn.outline:hover{background:var(--red);border-color:var(--red);color:#fff}
+.btn[aria-disabled="true"]{opacity:.4;cursor:not-allowed}
+.btn[aria-disabled="true"]:hover{background:var(--red);border-color:var(--red);color:#fff}
+.btn.outline[aria-disabled="true"]:hover{background:transparent;border-color:var(--fg);color:var(--fg)}
+.btn .pend{font-size:10px;opacity:.85}
+
+/* ---------- 04 ---------- */
+.hint{color:var(--muted);margin:28px 0 0}
+.acc{list-style:none;margin:16px 0 0;padding:0;border-bottom:1px solid var(--fg)}
+.acc > li{border-top:1px solid var(--fg)}
+.acc-btn{scroll-margin-top:60px;width:100%;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;padding:22px 0;background:none;border:0;text-align:left;cursor:pointer}
+.acc-num{font-size:13px;color:var(--red);align-self:start;padding-top:.3em}
+.acc-title{display:block;font-weight:700;font-size:min(11vw,4.4rem);line-height:.82;transition:font-weight .3s}
+.acc-btn:hover .acc-title,.acc-btn[aria-expanded="true"] .acc-title{font-weight:300}
+.acc-btn[aria-expanded="true"] .acc-title{color:var(--red)}
+.acc-sub{display:block;margin-top:10px;color:var(--muted);font-size:1rem}
+.acc-ico{width:46px;height:46px;border:1px solid var(--fg);border-radius:999px;display:grid;place-items:center;transition:transform .35s ease,background .2s,border-color .2s;flex:none}
+.acc-ico svg{width:16px;height:16px}
+.acc-btn:hover .acc-ico{background:var(--red);border-color:var(--red);color:#fff}
+.acc-btn[aria-expanded="true"] .acc-ico{transform:rotate(45deg);background:var(--red);border-color:var(--red);color:#fff}
+.acc-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s ease}
+.acc-panel.open{grid-template-rows:1fr}
+.acc-panel > div{overflow:hidden}
+.acc-inner{display:grid;gap:28px;padding:4px 0 44px}
+.acc-inner p{max-width:34em}
+
+.ex-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.reelx{background:#111}
+.reelx img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);transition:opacity .7s ease,transform 3.2s ease}
+.reelx img.on{opacity:1;transform:scale(1)}
+.reelx-bars{position:absolute;left:10px;right:10px;top:9px;display:flex;gap:3px;z-index:2}
+.reelx-bars i{flex:1;height:2px;border-radius:2px;background:rgba(255,255,255,.4);overflow:hidden}
+.reelx-bars i::after{content:"";display:block;height:100%;width:0;background:#fff}
+.reelx-bars i.done::after{width:100%}
+.reelx-bars i.run::after{width:100%;transition:width var(--dur,2.2s) linear}
+.reelx-top{position:absolute;left:12px;right:12px;top:22px;z-index:2;color:#fff;font-weight:300;font-size:1.25rem;line-height:.82;text-shadow:0 1px 14px rgba(0,0,0,.5)}
+.reelx-top b{font-weight:700}
+.reelx-tag{position:absolute;left:12px;bottom:12px;z-index:2;background:#fff;color:#000;border-radius:999px;padding:6px 10px;font-size:11px;text-transform:uppercase;line-height:1}
+.reelx-tag b{color:var(--red);font-weight:400;margin-left:4px}
+.ex h4{margin:12px 0 4px;font-size:1rem;line-height:1;font-weight:700}
+.ex p{margin:0;font-size:.88rem;color:var(--muted);line-height:1.4}
+.swatches{position:absolute;left:0;right:0;bottom:12px;display:flex;justify-content:center;gap:8px}
+.sw{width:24px;height:24px;border-radius:50%;border:2px solid #fff;cursor:pointer;padding:0;box-shadow:0 0 0 1px rgba(0,0,0,.15)}
+.sw[aria-pressed="true"]{box-shadow:0 0 0 2px #000}
+
+/* Historia de Instagram simulada */
+.story{position:relative;width:100%;max-width:310px;aspect-ratio:9/16;margin:0 auto;border-radius:22px;overflow:hidden;background:#222;color:#fff;display:flex;flex-direction:column;padding:12px 12px 16px;isolation:isolate}
+.story-bg{position:absolute;inset:-8%;width:116%;height:116%;object-fit:cover;filter:blur(10px) brightness(.62);z-index:-1}
+.story-user .av{background:#fff!important;color:#000!important;font-weight:700!important}
+.story-bars{display:flex;gap:4px}
+.story-bars i{flex:1;height:2.5px;border-radius:2px;background:rgba(255,255,255,.6)}
+.story-bars i:first-child{background:#fff}
+.story-user{display:flex;align-items:center;gap:8px;margin:10px 0 0;font-size:12.5px;font-weight:700}
+.story-user .av{width:26px;height:26px;border-radius:50%;background:#000;color:#fff;display:grid;place-items:center;font-size:9px;font-weight:400}
+.story-user span.t{font-weight:400;opacity:.6}
+.story-q{margin:auto 0 0;color:#000;background:#fff;border-radius:16px;padding:16px 12px 12px;text-align:center}
+.story-q strong{display:block;font-weight:300;font-size:1.4rem;line-height:.82;margin-bottom:14px}
+.story-q strong b{font-weight:700}
+.story-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.opt{border:0;padding:0;background:#f2f2f2;border-radius:12px;overflow:hidden;cursor:pointer;text-align:center;transition:box-shadow .2s ease}
+.opt .media{border-radius:0;aspect-ratio:3/4}
+.opt span{display:block;padding:8px 0;font-size:12px;text-transform:uppercase}
+.opt:hover span{color:var(--red)}
+.opt[aria-pressed="true"]{box-shadow:0 0 0 2.5px var(--red)}
+.opt[aria-pressed="true"] span{background:var(--red);color:#fff}
+.story-foot{color:#fff;margin-top:10px;text-align:center;font-size:11px;min-height:1.3em;text-transform:uppercase}
+
+/* Chat */
+.chat{width:100%;max-width:380px;margin:0 auto;background:#fff;color:#000;border-radius:22px;overflow:hidden}
+.chat-head{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid rgba(0,0,0,.12);font-size:13px}
+.chat-head .av{width:30px;height:30px;border-radius:50%;background:#e6e6e6;display:grid;place-items:center;font-size:11px}
+.chat-head small{display:block;color:rgba(0,0,0,.55);font-size:11px;text-transform:uppercase}
+.chat-body{display:flex;flex-direction:column;gap:8px;padding:16px 12px 18px}
+.bub{max-width:82%;padding:10px 14px;border-radius:18px;font-size:14.5px;line-height:1.4;opacity:0;transform:translateY(8px);transition:opacity .4s ease,transform .4s ease}
+.bub.in{align-self:flex-start;background:#efefef;border-bottom-left-radius:6px}
+.bub.out{align-self:flex-end;background:#000;color:#fff;border-bottom-right-radius:6px}
+.chat.show .bub{opacity:1;transform:none}
+.bub.photo{padding:3px;width:76%;background:#000;display:grid;grid-template-columns:1fr 1fr;gap:3px}
+.bub.photo img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:15px;display:block}
+.bub.photo img:first-child{border-top-right-radius:6px;border-bottom-right-radius:6px}
+.bub.photo img:last-child{border-top-left-radius:6px;border-bottom-left-radius:6px}
+.bub.photo:has(img:only-child){width:62%;grid-template-columns:1fr}
+.bub.photo img:only-child{border-radius:15px}
+.chat-note{padding:11px 14px;border-top:1px solid rgba(0,0,0,.12);color:rgba(0,0,0,.55);text-align:center;font-size:11px;text-transform:uppercase}
+
+/* ---------- Reveal ---------- */
+.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.js .reveal.in{opacity:1;transform:none}
+.js .hero h1 .line > span{transform:translateY(105%);transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.js.loaded .hero h1 .line > span{transform:none}
+.js .hero h1 .line:nth-child(2) > span{transition-delay:.12s}
+.js .hero h1 .line:nth-child(3) > span{transition-delay:.24s}
+
+/* ---------- Desktop: todo el ancho, con jerarquía ---------- */
+@media (min-width:860px){
+  section{padding:110px 0 120px}
+  .hero{padding-top:72px}
+  .gallery{margin-top:64px}
+  .gal-track{gap:14px;--w:min(13vw,230px);--wa:min(26vw,440px)}
+  .hero-grid{grid-template-columns:repeat(12,1fr);gap:0 32px;margin-top:80px;align-items:start}
+  .hero-grid .who{grid-column:1 / span 4}
+  .hero-grid .txt{grid-column:6 / span 7}
+  .exp-grid{grid-template-columns:5fr 7fr;gap:6vw;align-items:start}
+  .exp:first-child{position:sticky;top:110px}
+  .redes{grid-template-columns:4fr 8fr;gap:5vw;align-items:start}
+  .redes .side{position:sticky;top:96px}
+  .reels{grid-auto-flow:row;grid-template-columns:repeat(3,1fr);overflow:visible;margin:0;padding:0;gap:20px}
+  .swipe-hint{display:none}
+  .btns{margin-top:28px}
+  .acc-btn{padding:30px 0;gap:32px}
+  .acc-inner{grid-template-columns:5fr 7fr;gap:6vw;align-items:start;padding:8px 0 60px}
+  .ex-pair{max-width:480px;margin:0 auto;gap:16px}
+}
+@media (min-width:1200px){
+  .acc-btn > span:nth-child(2){display:flex;align-items:baseline;gap:32px}
+  .acc-sub{margin:0}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .gal-item.on img,.gal-item.on.pop img{animation:none!important}
+  .js .reveal,.js .hero h1 .line > span,.bub,.js .gallery .gal-item{transition:none!important;transform:none!important;opacity:1!important}
+  .wave.in .b,.wave.in .l{animation:none}
+  .acc-panel,.acc-ico,.acc-title{transition:none}
+}
+</style>
+</head>
+<body>
+
+<header class="top" aria-label="Presentación de Mario Gabriel Pizzorno">
+  <div class="wrap up">
+    <span>Mario Gabriel Pizzorno</span>
+    <span class="count" id="count" aria-hidden="true">01 / 04</span>
+  </div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+</header>
+
+<main>
+
+<!-- ============ 01 PRESENTACIÓN ============ -->
+<section class="hero s-white" id="presentacion" data-n="01">
+  <div class="wrap">
+    <div class="label up"><span class="n">01</span><span>Presentación</span></div>
+    <h1 class="title wave" aria-label="Me gusta la ropa. Pero sobre todo, me gusta venderla.">
+      <span class="line"><span><span class="b">Me gusta</span> <span class="l">la</span> <span class="b">ropa.</span></span></span>
+      <span class="line"><span><span class="l">Pero</span> <span class="b">sobre todo,</span></span></span>
+      <span class="line"><span><span class="l">me gusta</span> <span class="b red">venderla.</span></span></span>
+    </h1>
+
+    <div class="gallery" id="gallery">
+      <div class="gal-track" id="gal-track" tabindex="0" role="region" aria-label="Galería de fotos de Mario"></div>
+      <div class="gal-prog" id="gal-prog" aria-hidden="true"><i></i></div>
+      <div class="gal-ctrl">
+        <span class="up muted" id="gal-count" aria-live="polite">01 / 05</span>
+        <div class="gal-btns">
+          <button class="gal-btn" id="gal-prev" aria-label="Foto anterior"><svg viewBox="0 0 16 16"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          <button class="gal-btn" id="gal-next" aria-label="Foto siguiente"><svg viewBox="0 0 16 16"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-grid">
+      <div class="who reveal">
+        <p class="hero-name"><b>Mario Gabriel</b> <span>Pizzorno</span></p>
+        <p class="hero-meta up">24 años · Vendedor de indumentaria</p>
+      </div>
+      <div class="txt reveal">
+        <p class="lead">Hola, soy Mario Gabriel Pizzorno, tengo 24 años.</p>
+        <p>Actualmente trabajo como vendedor en XL, en el shopping Paso del Paraná, donde llevo más de un año trabajando en atención y venta de indumentaria.</p>
+        <p>Además, tengo mi propio emprendimiento de ropa, que manejo tanto de manera presencial como a través de las redes sociales.</p>
+        <p>Estas dos experiencias me permitieron conocer distintas formas de vender, entender qué buscan los clientes y aprender a comunicar los productos para generar interés.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 EXPERIENCIA ============ -->
+<section class="s-black" id="experiencia" data-n="02">
+  <div class="wrap">
+    <div class="label up"><span class="n">02</span><span>Mi experiencia</span></div>
+    <h2 class="title wave reveal" aria-label="Dos formas de vender.">
+      <span class="line"><span class="b">Dos formas</span> <span class="l">de vender.</span></span>
+    </h2>
+
+    <div class="exp-grid">
+      <article class="exp reveal">
+        <div class="exp-head"><h3><b>Venta</b> presencial</h3><span class="up muted">A</span></div>
+        <p>Trabajo hace más de un año en XL, en el shopping Paso del Paraná.</p>
+        <p>El contacto diario con los clientes me enseñó que vender no es solamente ofrecer un producto, sino escuchar, entender lo que buscan y ayudarlos a elegir.</p>
+      </article>
+
+      <article class="exp reveal">
+        <div class="exp-head"><h3><b>Mi</b> emprendimiento</h3><span class="up muted">B</span></div>
+        <div class="phones">
+          <div>
+            <div class="phone"><div class="phone-screen" id="phone-feed"></div><span class="phone-island" aria-hidden="true"></span></div>
+            <p class="phone-cap">Feed</p>
+          </div>
+          <div>
+            <div class="phone"><div class="phone-screen" id="phone-video"></div><span class="phone-island" aria-hidden="true"></span></div>
+            <p class="phone-cap">Video</p>
+          </div>
+        </div>
+        <p>También tengo mi propio emprendimiento de indumentaria, donde vendo ropa de manera presencial y a través de redes sociales.</p>
+        <p>Esto me permitió conocer el proceso de venta desde otro lugar: mostrar productos, comunicar novedades, responder consultas y trabajar para concretar una compra.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 ASÍ TRABAJO ============ -->
+<section class="s-white" id="asi-trabajo" data-n="03">
+  <div class="wrap">
+    <div class="label up"><span class="n">03</span><span>Así trabajo</span></div>
+    <h2 class="title wave reveal" aria-label="Las redes también son mi vidriera.">
+      <span class="line"><span class="l">Las</span> <span class="b">redes</span> <span class="l">también</span></span>
+      <span class="line"><span class="l">son</span> <span class="b">mi vidriera.</span></span>
+    </h2>
+
+    <div class="redes">
+      <div class="side reveal">
+        <p class="lead">En mi emprendimiento utilizo las redes para mostrar productos, comunicar novedades y mantener el contacto con los clientes.</p>
+        <p class="lead">Me gusta generar contenido que no solamente muestre una prenda, sino que también despierte interés y ayude a venderla.</p>
+        <div class="btns">
+          <a class="btn" id="btn-ig" target="_blank" rel="noopener noreferrer">Ver mi Instagram <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="reels" id="reels" aria-label="Ejemplos de contenido"></div>
+        <p class="swipe-hint up">Deslizá para ver los tres →</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 MI PROPUESTA ============ -->
+<section class="s-black" id="propuesta" data-n="04">
+  <div class="wrap">
+    <div class="label up"><span class="n">04</span><span>Mi propuesta</span></div>
+    <h2 class="title wave reveal" aria-label="Mostrar. Conectar. Vender.">
+      <span class="line"><span class="b">Mostrar.</span></span>
+      <span class="line"><span class="l">Conectar.</span> <span class="b">Vender.</span></span>
+    </h2>
+    <div class="reveal">
+      <p class="lead" style="max-width:40em">Mi idea es aprovechar las redes como una extensión del local: mostrar lo que tienen para ofrecer, acercarme a los clientes y transformar ese interés en ventas.</p>
+      <p class="lead">Para eso, trabajaría sobre tres puntos.</p>
+      <p class="hint up">Tocá cada punto para ver el ejemplo</p>
+    </div>
+
+    <ul class="acc reveal">
+      <!-- MOSTRAR -->
+      <li>
+        <button class="acc-btn" aria-expanded="false" aria-controls="p1" id="b1">
+          <span class="acc-num">01</span>
+          <span><span class="acc-title">Mostrar</span><span class="acc-sub">Contenido que llame la atención.</span></span>
+          <span class="acc-ico" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="1.6"/></svg></span>
+        </button>
+        <div class="acc-panel" id="p1" role="region" aria-labelledby="b1"><div><div class="acc-inner">
+          <div>
+            <p>Crearía contenido simple, dinámico y cercano para mostrar las prendas de una manera atractiva.</p>
+            <p>Videos de nuevos ingresos, combinaciones de outfits, detalles de productos y recomendaciones que ayuden a los clientes a descubrir lo que ofrece el local.</p>
+          </div>
+          <div class="vis">
+            <div class="ex-pair">
+              <div class="ex">
+                <div class="media r916 reelx" data-reel="tresLooks" data-label="Look" aria-label="Ejemplo de reel: un pantalón combinado de tres formas" role="img">
+                  <span class="reelx-top"><b>Un pantalón,</b> tres looks</span>
+                </div>
+                <h4>Un pantalón, tres looks</h4>
+                <p>Reel mostrando tres combinaciones con una misma prenda.</p>
+              </div>
+              <div class="ex">
+                <div class="media r916 reelx" data-reel="algoNuevo" data-label="Detalle" aria-label="Ejemplo de reel: nuevo ingreso con detalles" role="img">
+                  <span class="reelx-top"><b>Llegó</b> algo&nbsp;nuevo</span>
+                </div>
+                <h4>Llegó algo nuevo</h4>
+                <p>Video corto con nuevos ingresos, detalles, colores y cómo quedan puestos.</p>
+              </div>
+            </div>
+          </div>
+        </div></div></div>
+      </li>
+
+      <!-- CONECTAR -->
+      <li>
+        <button class="acc-btn" aria-expanded="false" aria-controls="p2" id="b2">
+          <span class="acc-num">02</span>
+          <span><span class="acc-title">Conectar</span><span class="acc-sub">Generar conversaciones.</span></span>
+          <span class="acc-ico" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="1.6"/></svg></span>
+        </button>
+        <div class="acc-panel" id="p2" role="region" aria-labelledby="b2"><div><div class="acc-inner">
+          <div>
+            <p>Buscaría mantener una comunicación activa con los seguidores, utilizando historias, encuestas y contenido interactivo para conocer sus gustos, responder dudas y generar interés por los productos.</p>
+          </div>
+          <div class="vis">
+            <div class="story" id="story" aria-label="Ejemplo de historia de Instagram con encuesta">
+              <img class="story-bg" id="story-bg" alt="" aria-hidden="true">
+              <div class="story-bars" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="story-user"><span class="av" id="story-av">F</span><span id="story-user">fruta.in</span> <span class="t">· 2 h</span></div>
+              <div class="story-q">
+                <strong>¿Cuál te <b>pondrías</b> este&nbsp;<b>finde?</b></strong>
+                <div class="story-opts">
+                  <button class="opt" aria-pressed="false" data-look="Look 01"><div class="media" data-slot="ejemplos.look01"></div><span>Look 01</span></button>
+                  <button class="opt" aria-pressed="false" data-look="Look 02"><div class="media" data-slot="ejemplos.look02"></div><span>Look 02</span></button>
+                </div>
+              </div>
+              <div class="story-foot" id="story-foot" aria-live="polite">Tocá un look para votar</div>
+            </div>
+          </div>
+        </div></div></div>
+      </li>
+
+      <!-- VENDER -->
+      <li>
+        <button class="acc-btn" aria-expanded="false" aria-controls="p3" id="b3">
+          <span class="acc-num">03</span>
+          <span><span class="acc-title">Vender</span><span class="acc-sub">Llevar el asesoramiento a lo digital.</span></span>
+          <span class="acc-ico" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="1.6"/></svg></span>
+        </button>
+        <div class="acc-panel" id="p3" role="region" aria-labelledby="b3"><div><div class="acc-inner">
+          <div>
+            <p>Aplicaría mi experiencia como vendedor para atender consultas de manera personalizada, recomendar productos, ayudar con los talles y ofrecer alternativas según lo que busque cada cliente.</p>
+            <p>Mi objetivo sería acompañar el proceso de compra y facilitar que cada consulta pueda convertirse en una venta.</p>
+          </div>
+          <div class="vis">
+            <div class="chat" id="chat">
+              <div class="chat-head"><span class="av" aria-hidden="true">C</span><div><strong>Cliente</strong><small>Mensaje directo · Instagram</small></div></div>
+              <div class="chat-body">
+                <div class="bub in">Hola, ¿qué talles tienen del jean que subieron?</div>
+                <div class="bub out">¡Hola! Te paso los talles disponibles. ¿Buscás un calce más suelto o más clásico? Así te recomiendo el que mejor te quede.</div>
+                <div class="bub in">Más bien suelto.</div>
+                <div class="bub out">¡Genial! Te muestro cómo queda puesto y, si querés, también te paso un par de remeras que combinan muy bien.</div>
+                <div class="bub out photo" id="chat-fotos"></div>
+              </div>
+              <div class="chat-note">Ejemplo de cómo atendería una consulta</div>
+            </div>
+          </div>
+        </div></div></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<script>
+/* =====================================================================
+   ILUSTRACIONES DE EJEMPLO (se muestran solo mientras no haya foto/video)
+   ===================================================================== */
+const C = {ink:"#1A1A1A", denim:"#4A5C78", denimD:"#3A4A63", stone:"#77736D", cream:"#F2F0EC", sand:"#C9B9A0", brown:"#8A6A4F", gray:"#A3A3A3", white:"#FBFBFA", red:"#ff1a0a"};
+const sh = "rgba(0,0,0,.14)";
+const FONT = `font-family="HND, 'Helvetica Now Display', 'Helvetica Neue', Helvetica, Arial, sans-serif" letter-spacing="-0.02em"`;
+const at = (x,y,s,inner) => `<g transform="translate(${x} ${y}) scale(${s})">${inner}</g>`;
+const tee = c => `<path d="M30 10 L42 5 Q50 13 58 5 L70 10 L90 26 L79 38 L70 32 L70 94 L30 94 L30 32 L21 38 L10 26 Z" fill="${c}"/><path d="M42 5 Q50 13 58 5" fill="none" stroke="${sh}" stroke-width="2"/><path d="M30 32 L30 40 M70 32 L70 40" stroke="${sh}"/>`;
+const hoodie = c => `<path d="M30 12 L40 7 L60 7 L70 12 L86 26 L93 90 L81 92 L72 44 L72 94 L28 94 L28 44 L19 92 L7 90 L14 26 Z" fill="${c}"/><path d="M37 9 Q38 -3 50 -4 Q62 -3 63 9 Q50 26 37 9 Z" fill="${c}" stroke="${sh}" stroke-width="1.5"/><path d="M46 17 L45 34 M54 17 L55 34" stroke="${sh}" stroke-width="1.4"/><rect x="37" y="62" width="26" height="16" rx="3" fill="rgba(0,0,0,.08)"/><rect x="28" y="88" width="44" height="6" fill="rgba(0,0,0,.08)"/>`;
+const jacket = c => `<path d="M30 12 L40 7 L60 7 L70 12 L86 26 L93 90 L81 92 L72 44 L72 94 L28 94 L28 44 L19 92 L7 90 L14 26 Z" fill="${c}"/><path d="M40 7 L50 22 L60 7" fill="rgba(0,0,0,.14)"/><path d="M50 22 L50 94" stroke="rgba(0,0,0,.3)" stroke-width="1.4"/><path d="M33 56 L44 56 M56 56 L67 56" stroke="rgba(0,0,0,.22)" stroke-width="2"/>`;
+const pants = (c, loose) => loose
+  ? `<path d="M26 4 L74 4 L84 96 L57 96 L50 36 L43 96 L16 96 Z" fill="${c}"/><rect x="26" y="4" width="48" height="6" fill="rgba(0,0,0,.14)"/><path d="M50 10 L50 30" stroke="rgba(0,0,0,.25)"/><path d="M30 10 Q36 18 38 10 M70 10 Q64 18 62 10" fill="none" stroke="rgba(0,0,0,.22)"/>`
+  : `<path d="M28 4 L72 4 L76 96 L56 96 L50 34 L44 96 L24 96 Z" fill="${c}"/><rect x="28" y="4" width="44" height="6" fill="rgba(0,0,0,.14)"/><path d="M50 10 L50 30" stroke="rgba(0,0,0,.25)"/><path d="M31 10 Q36 17 38 10 M69 10 Q64 17 62 10" fill="none" stroke="rgba(0,0,0,.22)"/>`;
+const sneaker = c => `<path d="M4 36 Q4 20 18 18 L40 14 Q46 8 56 10 L72 18 Q92 22 96 32 L96 38 L4 38 Z" fill="${c}"/><rect x="3" y="36" width="94" height="7" rx="3" fill="#F7F7F5" stroke="rgba(0,0,0,.12)"/><path d="M42 14 L48 24 M50 12 L56 22 M58 13 L63 21" stroke="rgba(0,0,0,.28)" stroke-width="1.4"/>`;
+const cap = c => `<path d="M10 30 Q12 6 40 6 Q66 6 68 30 Z" fill="${c}"/><path d="M62 27 Q82 25 94 32 L64 34 Z" fill="${c}"/><circle cx="39" cy="7" r="2.5" fill="rgba(0,0,0,.2)"/>`;
+const hanger = `<path d="M50 2 q6 0 6 6 q0 5 -6 7 L50 16 L12 32 L88 32 L50 16" fill="none" stroke="#1A1A1A" stroke-width="2.2" stroke-linejoin="round"/>`;
+// Título dentro de la imagen: [["texto",700],["texto",300]] por renglón
+const T = (x,y,size,lines,fill="#000") => lines.map((ln,i)=> `<text x="${x}" y="${y + i*size*0.82}" font-size="${size}" fill="${fill}" ${FONT}>${ln.map(([t,w])=>`<tspan font-weight="${w}">${t}</tspan>`).join(" ")}</text>`).join("");
+const U = (x,y,txt,opt="") => `<text x="${x}" y="${y}" font-size="12" font-weight="400" ${FONT} ${opt}>${txt}</text>`;
+const svg = (w,h,bg,inner) => `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="${w}" height="${h}" fill="${bg}"/>${inner}</svg>`;
+const floor = (cx,cy,rx) => `<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${rx*.08}" fill="rgba(0,0,0,.08)"/>`;
+const outfit = (top, topC, pantsC, loose, shoeC) => at(0,0,1, top(topC)) + at(0,86,1, pants(pantsC, loose)) + at(14,178,.36, sneaker(shoeC)) + at(52,180,.36, sneaker(shoeC));
+const EJ = U(20,38,"FOTO DE EJEMPLO",'fill="#000" opacity=".5"');
+
+const ILUSTRACIONES = {
+  retrato: () => svg(400,500,"#E6E6E4",
+    floor(200,492,170) +
+    at(62,214,2.76, hoodie(C.ink)) +
+    `<rect x="184" y="170" width="32" height="40" fill="#B49A80"/>` +
+    `<ellipse cx="200" cy="140" rx="46" ry="54" fill="#C2A68A"/>` +
+    `<path d="M154 132 Q152 84 200 82 Q248 84 246 132 Q236 108 200 106 Q166 108 154 132 Z" fill="#2A2522"/>` + EJ),
+
+  perchero: () => {
+    let g = `<rect x="34" y="112" width="332" height="6" rx="3" fill="#1A1A1A"/><rect x="40" y="112" width="5" height="350" fill="#1A1A1A"/><rect x="355" y="112" width="5" height="350" fill="#1A1A1A"/><rect x="26" y="458" width="40" height="5" fill="#1A1A1A"/><rect x="334" y="458" width="40" height="5" fill="#1A1A1A"/>` + floor(200,468,180);
+    const items = [[tee,C.cream],[jacket,C.stone],[tee,C.ink],[hoodie,C.sand],[jacket,C.denim],[tee,C.white],[hoodie,C.brown]];
+    items.forEach(([f,c],i) => { const x = 50 + i*40; g += at(x,106,.42,hanger) + at(x-10,124,.78,f(c)); });
+    return svg(400,500,"#EFEFED", g + EJ);
+  },
+
+  emprendimiento: () => {
+    let g = floor(200,470,170);
+    const fold = (x,y,c) => `<rect x="${x}" y="${y}" width="150" height="30" rx="4" fill="${c}"/><rect x="${x}" y="${y+24}" width="150" height="6" rx="2" fill="rgba(0,0,0,.08)"/>`;
+    [C.cream,C.ink,C.sand,C.stone,C.white].forEach((c,i)=> g += fold(36,430-i*30,c));
+    g += `<path d="M90 310 Q111 324 132 310" fill="none" stroke="${sh}" stroke-width="2.5"/>`;
+    g += `<rect x="214" y="96" width="150" height="300" rx="22" fill="#1A1A1A"/><rect x="222" y="112" width="134" height="268" rx="14" fill="#FBFBFA"/>`;
+    g += `<circle cx="244" cy="136" r="12" fill="#DADAD8"/><rect x="262" y="128" width="60" height="6" rx="3" fill="#1A1A1A"/><rect x="262" y="139" width="40" height="5" rx="2.5" fill="#BDBDBB"/>`;
+    const cols = [C.sand,C.ink,C.denim,C.stone,C.cream,C.brown,C.gray,C.red,C.denimD];
+    cols.forEach((c,i)=>{ const x = 226 + (i%3)*43.5, y = 164 + Math.floor(i/3)*58; g += `<rect x="${x}" y="${y}" width="41" height="55" fill="${c}"/>`; });
+    g += `<g transform="rotate(-12 110 150)"><path d="M66 120 L156 120 L171 150 L156 180 L66 180 Z" fill="#FBFBFA" stroke="rgba(0,0,0,.12)"/><circle cx="158" cy="150" r="5" fill="#EFEFED"/>` + T(78,160,30,[[["Nuevo",700]]]) + `</g>`;
+    return svg(400,500,"#F1F1EF", g + EJ);
+  },
+
+  reelProducto: () => svg(360,640,"#E4E4E2",
+    T(24,66,44,[[["El jean",700]],[["de cerca",300]]]) +
+    at(40,150,2.8, pants(C.denim,true)) + floor(180,428,150) +
+    `<path d="M110 186 L222 470" stroke="#000" stroke-width="1.2" stroke-dasharray="4 4"/>` +
+    `<circle cx="250" cy="520" r="74" fill="${C.denim}" stroke="#fff" stroke-width="6"/>` +
+    `<path d="M196 488 Q250 548 304 488" fill="none" stroke="#E2B66B" stroke-width="2.5" stroke-dasharray="7 5"/><path d="M206 470 L294 470" stroke="#E2B66B" stroke-width="2.5" stroke-dasharray="7 5"/><circle cx="250" cy="560" r="6" fill="#C9A15A"/>` +
+    U(24,606,"TELA · CALCE · DETALLES",'fill="#000"')),
+
+  reelContenido: () => svg(360,640,"#EEEEEC",
+    U(24,44,"OUTFIT DEL DÍA",'fill="#000"') +
+    at(116,70,1.4, cap(C.ink)) +
+    at(80,136,2, tee(C.white)) +
+    at(80,330,2, pants(C.stone,false)) +
+    at(70,560,1.05, sneaker(C.white)) + at(190,566,1.05, sneaker(C.white)) +
+    `<path d="M300 120 l18 -18 M300 300 l18 18" stroke="#ff1a0a" stroke-width="1.4"/>` + U(296,96,"01",'fill="#ff1a0a"') + U(296,334,"02",'fill="#ff1a0a"')),
+
+  reelEmprendimiento: () => {
+    let g = T(24,78,62,[[["Nuevo",700]],[["ingreso",300]]]);
+    const cols = [C.white,C.ink,C.sand,C.denim,C.stone,C.cream];
+    cols.forEach((c,i)=>{ const y = 520 - i*44; g += `<rect x="50" y="${y}" width="260" height="46" rx="5" fill="${c}"/><rect x="50" y="${y+38}" width="260" height="8" rx="2" fill="rgba(0,0,0,.08)"/>`; });
+    g += `<path d="M146 300 Q180 322 214 300" fill="none" stroke="${sh}" stroke-width="3"/>` + floor(180,572,150);
+    g += `<g transform="rotate(10 280 250)"><rect x="232" y="214" width="100" height="56" rx="28" fill="#ff1a0a"/>` + U(252,247,"YA DISP.",'fill="#fff"') + `</g>`;
+    return svg(360,640,"#E0E0DE", g + U(24,612,"TALLES S — XXL",'fill="#000" opacity=".7"'));
+  },
+
+  tresLooks: () => {
+    let g = T(18,56,34,[[["1 pantalón",700]],[["3 looks",300]]]);
+    const tops = [[tee,C.white],[hoodie,C.sand],[jacket,C.ink]];
+    tops.forEach(([f,c],i)=>{ const x = 3 + i*119; g += U(x+50,190,"0"+(i+1),'fill="#ff1a0a"') + at(x,220,1.14, outfit(f,c,C.denim,true,i===2?C.ink:C.white)); });
+    g += floor(180,480,160);
+    return svg(360,640,"#ECECEA", g + U(18,606,"MISMA PRENDA · 3 FORMAS",'fill="#000" opacity=".7"'));
+  },
+
+  algoNuevo: () => svg(360,640,"#E6E6E4",
+    T(24,66,46,[[["Llegó",700]],[["algo nuevo",300]]]) +
+    at(50,190,2.6, hoodie("var(--hc, #1A1A1A)")) + floor(180,452,150) +
+    U(24,500,"COLORES",'fill="#000"')),
+
+  look01: () => svg(150,200,"#EEEEEC", at(25,14,1, outfit(tee,C.white,C.denim,true,C.white))),
+  look02: () => svg(150,200,"#DEDEDC", at(25,14,1, outfit(jacket,C.ink,C.stone,false,C.white)))
+};
+
+/* =====================================================================
+   RENDER
+   ===================================================================== */
+const get = path => path.split(".").reduce((o,k)=>o && o[k], CONFIG);
+const ilustracion = slot => (ILUSTRACIONES[slot.ejemplo] || (()=> ""))();
+const PLAY = `<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M5 3 L15 9 L5 15 Z" fill="#000"/></svg>`;
+const MUTED = `<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 6.5h3l4-3.5v12l-4-3.5H2z" fill="currentColor"/><path d="m12 6.5 5 5m0-5-5 5" stroke="currentColor" stroke-width="1.5"/></svg>`;
+const SOUND = `<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 6.5h3l4-3.5v12l-4-3.5H2z" fill="currentColor"/><path d="M12 6c1.2 1.6 1.2 4.4 0 6M14.3 4c2.2 2.8 2.2 7.2 0 10" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>`;
+const PAUSE = `<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M5 3h3v12H5zM10 3h3v12h-3z" fill="#000"/></svg>`;
+
+function fillMedia(el, slot, label){
+  if(!slot) return;
+  if(slot.video){
+    // Reel: arranca sin sonido y en loop cuando está a la vista. Tocar = activar/desactivar sonido.
+    el.innerHTML = `<video playsinline loop muted autoplay preload="metadata" ${slot.src ? `poster="${slot.src}"` : ""} src="${slot.video}"></video>
+      <button class="soundbtn" aria-label="Activar sonido de ${label || "video"}" aria-pressed="false">${MUTED}</button>`;
+    const v = el.querySelector("video"), b = el.querySelector(".soundbtn");
+    v.muted = true;
+    const setSound = on => {
+      document.querySelectorAll(".media video").forEach(o => { if(o !== v){ o.muted = true; const ob = o.parentElement.querySelector(".soundbtn"); if(ob){ ob.innerHTML = MUTED; ob.setAttribute("aria-pressed","false"); } } });
+      v.muted = !on; b.innerHTML = on ? SOUND : MUTED; b.setAttribute("aria-pressed", on ? "true" : "false");
+      b.setAttribute("aria-label", (on ? "Silenciar " : "Activar sonido de ") + (label || "video"));
+      if(on) v.play().catch(()=>{});
+    };
+    b.addEventListener("click", e => { e.stopPropagation(); setSound(v.muted); });
+    v.addEventListener("click", () => setSound(v.muted));
+    new IntersectionObserver(es => es.forEach(e => {
+      if(e.isIntersecting){ v.play().catch(()=>{}); } else { v.pause(); }
+    }), {threshold:.35}).observe(v);
+    v.addEventListener("error", ()=>{ el.innerHTML = ilustracion(slot) + `<span class="chip">Ejemplo</span>`; }, {once:true});
+    return;
+  }
+  if(slot.src){
+    el.innerHTML = `<img src="${slot.src}" alt="${slot.alt || label || ""}" loading="lazy" decoding="async" ${slot.foco ? `style="object-position:${slot.foco}"` : ""}>`;
+    el.querySelector("img").addEventListener("error", ()=>{ el.innerHTML = ilustracion(slot); }, {once:true});
+    return;
+  }
+  el.innerHTML = ilustracion(slot);
+  el.setAttribute("role","img");
+  el.setAttribute("aria-label", (slot.alt || label || "Imagen") + " (ejemplo)");
+}
+
+document.querySelectorAll("[data-slot]").forEach(el => fillMedia(el, get(el.dataset.slot)));
+
+const reelsEl = document.getElementById("reels");
+CONFIG.reels.forEach((r,i) => {
+  const fig = document.createElement("figure");
+  fig.className = "reel";
+  fig.innerHTML = `<div class="media r916"></div><figcaption><h3><small>0${i+1}</small>${r.titulo}</h3><p>${r.descripcion}</p></figcaption>`;
+  const m = fig.querySelector(".media");
+  fillMedia(m, r, r.titulo);
+  if(!r.video && !r.src){ m.insertAdjacentHTML("beforeend", `<span class="chip dark">Reel · ejemplo</span>`); }
+  reelsEl.appendChild(fig);
+});
+
+[["btn-ig", CONFIG.instagramUrl]].forEach(([id,url]) => {
+  const a = document.getElementById(id);
+  if(url){ a.href = url; }
+  else {
+    a.removeAttribute("target");
+    a.setAttribute("aria-disabled","true");
+    a.setAttribute("role","link");
+    a.querySelector("span").outerHTML = `<span class="pend">Link pendiente</span>`;
+    a.addEventListener("click", e => e.preventDefault());
+  }
+});
+
+
+// Galería: todas iguales, la elegida se agranda
+(() => {
+  const track = document.getElementById("gal-track"), wrap = document.getElementById("gallery");
+  const total = CONFIG.galeria.length;
+  CONFIG.galeria.forEach((g,i) => {
+    const f = document.createElement("figure");
+    f.className = "gal-item";
+    f.style.transitionDelay = (i*0.08) + "s, " + (i*0.08) + "s, 0s";
+    f.innerHTML = `<div class="ph"><img src="${g.src}" alt="${g.alt}" decoding="async" draggable="false" style="object-position:${g.foco || "50% 50%"}"></div><figcaption><b>${String(i+1).padStart(2,"0")}</b>${g.alt}</figcaption>`;
+    f.addEventListener("click", () => { if(!dragged) set(i); });
+    track.appendChild(f);
+  });
+  const items = [...track.children];
+  const count = document.getElementById("gal-count"), prev = document.getElementById("gal-prev"), next = document.getElementById("gal-next");
+  let active = Math.floor(total/2), dragged = false;
+  const center = smooth => {
+    const it = items[active];
+    track.scrollTo({left: it.offsetLeft + it.offsetWidth/2 - track.clientWidth/2, behavior: smooth && !reduceMotion() ? "smooth" : "auto"});
+  };
+  function set(i, auto){
+    active = Math.max(0, Math.min(total-1, i));
+    items.forEach((it,k) => { it.classList.toggle("on", k === active); it.classList.remove("pop"); it.setAttribute("aria-current", k === active ? "true" : "false"); });
+    void items[active].offsetWidth; items[active].classList.add("pop");
+    if(!auto) pauseAuto();
+    restartProg();
+    count.textContent = String(active+1).padStart(2,"0") + " / " + String(total).padStart(2,"0");
+    prev.disabled = active === 0; next.disabled = active === total-1;
+    center(true); setTimeout(() => center(true), 720);
+  }
+  // Avance automático mientras la galería está a la vista (se pausa si el usuario interactúa)
+  const prog = document.getElementById("gal-prog"), DUR = 4500;
+  let timer = null, inView = false, pausedUntil = 0;
+  function restartProg(){ prog.classList.remove("run"); void prog.offsetWidth; if(inView && !reduceMotion() && Date.now() >= pausedUntil) prog.classList.add("run"); }
+  function pauseAuto(){ pausedUntil = Date.now() + 9000; }
+  function tick(){ if(inView && !reduceMotion() && Date.now() >= pausedUntil && !document.hidden){ set((active+1) % total, true); } else { restartProg(); } }
+  prog.style.setProperty("--gdur", DUR/1000 + "s");
+  new IntersectionObserver(es => es.forEach(e => {
+    inView = e.isIntersecting; clearInterval(timer);
+    if(inView){ restartProg(); timer = setInterval(tick, DUR); }
+  }), {threshold:.35}).observe(track);
+  prev.addEventListener("click", () => set(active-1)); next.addEventListener("click", () => set(active+1));
+  track.addEventListener("keydown", e => { if(e.key === "ArrowRight"){ e.preventDefault(); set(active+1); } if(e.key === "ArrowLeft"){ e.preventDefault(); set(active-1); } });
+  addEventListener("resize", () => center(false));
+  set(active, true); requestAnimationFrame(() => center(false));
+  // Arrastrar con el mouse en desktop
+  let down = false, sx = 0, sl = 0;
+  track.addEventListener("pointerdown", e => { pauseAuto(); if(e.pointerType !== "mouse") return; down = true; dragged = false; sx = e.clientX; sl = track.scrollLeft; });
+  addEventListener("pointermove", e => { if(!down) return; const dx = e.clientX - sx; if(Math.abs(dx) > 5){ dragged = true; track.classList.add("drag"); } if(dragged) track.scrollLeft = sl - dx; });
+  addEventListener("pointerup", () => { if(!down) return; down = false; track.classList.remove("drag"); setTimeout(() => dragged = false, 0); });
+  new IntersectionObserver((es,o) => es.forEach(e => { if(e.isIntersecting){ wrap.classList.add("in"); o.disconnect(); } }), {threshold:.1}).observe(wrap);
+})();
+function reduceMotion(){ return window.matchMedia("(prefers-reduced-motion: reduce)").matches; }
+
+// Celulares de "Mi emprendimiento"
+(() => {
+  const E = CONFIG.emprendimiento;
+  const feed = document.getElementById("phone-feed");
+  if(E.feed.src){
+    feed.innerHTML = `<img src="${E.feed.src}" alt="${E.feed.alt}" decoding="async">`;
+  }
+  const box = document.getElementById("phone-video");
+  const v = E.video;
+  if(!v.src){
+    box.setAttribute("role","img");
+    box.setAttribute("aria-label","Espacio reservado para el video del emprendimiento");
+    box.innerHTML = `<div class="phone-empty"><div class="ring">${PLAY.replace('fill="#000"','fill="#fff"')}</div><span>Espacio para<br>el video</span></div>`;
+    return;
+  }
+  box.innerHTML = `<video muted autoplay playsinline loop preload="auto" ${v.poster ? `poster="${v.poster}"` : ""} src="${v.src}" aria-label="${v.alt}"></video>`;
+  const el = box.querySelector("video");
+  el.muted = true; el.defaultMuted = true;
+  const ini = Number(v.inicio) || 0, fin = Number(v.fin) || 0;
+  if(ini > 0) el.addEventListener("loadedmetadata", () => { el.currentTime = ini; }, {once:true});
+  el.addEventListener("timeupdate", () => { if(fin > ini && el.currentTime >= fin){ el.currentTime = ini; } });
+  // Se reproduce solo cuando está a la vista
+  new IntersectionObserver(es => es.forEach(e => {
+    visible = e.isIntersecting;
+    if(visible){ el.play().catch(()=>{}); } else { el.pause(); }
+  }), {threshold:.15}).observe(el);
+  // Si el navegador lo frena (carga lenta, pestaña en segundo plano), lo vuelve a arrancar
+  let visible = false;
+  ["stalled","suspend","pause","canplay"].forEach(ev => el.addEventListener(ev, () => { if(visible && el.paused) el.play().catch(()=>{}); }));
+  el.addEventListener("ended", () => { el.currentTime = ini; el.play().catch(()=>{}); });
+})();
+
+// Ejemplos con fotos reales
+(() => {
+  const X = CONFIG.ejemplos;
+  document.querySelectorAll(".reelx").forEach(box => {
+    const list = X[box.dataset.reel] || [], label = box.dataset.label || "";
+    box.insertAdjacentHTML("afterbegin", list.map((f,i) => `<img src="${f.src}" alt="" decoding="async" style="object-position:${f.foco || "50% 50%"}" ${i===0 ? 'class="on"' : ""}>`).join(""));
+    box.insertAdjacentHTML("beforeend", `<div class="reelx-bars" aria-hidden="true">${list.map(()=>"<i></i>").join("")}</div><span class="reelx-tag"></span>`);
+    const imgs = [...box.querySelectorAll("img")], bars = [...box.querySelectorAll(".reelx-bars i")], tag = box.querySelector(".reelx-tag");
+    let i = 0, timer = null; const dur = 2200;
+    const show = n => {
+      i = n % imgs.length;
+      imgs.forEach((im,k) => im.classList.toggle("on", k === i));
+      bars.forEach((b,k) => { b.classList.remove("run"); b.classList.toggle("done", k < i); });
+      const et = list[i].etiqueta || (label + " " + String(i+1).padStart(2,"0"));
+      const m = et.match(/^(.*?)\s*(\d+)$/);
+      tag.innerHTML = m ? `${m[1]} <b>${m[2]}</b>` : et;
+      requestAnimationFrame(() => requestAnimationFrame(() => bars[i] && bars[i].classList.add("run")));
+    };
+    box.style.setProperty("--dur", dur/1000 + "s");
+    new IntersectionObserver(es => es.forEach(e => {
+      clearInterval(timer);
+      if(e.isIntersecting){ show(i); timer = setInterval(() => show(i+1), dur); }
+    }), {threshold:.4}).observe(box);
+  });
+  const bg = document.getElementById("story-bg"); if(bg && X.historiaFondo) bg.src = X.historiaFondo;
+  const u = CONFIG.localUsuario || "tu.local";
+  document.getElementById("story-user").textContent = u;
+  document.getElementById("story-av").textContent = u.charAt(0).toUpperCase();
+  const cf = document.getElementById("chat-fotos");
+  if(cf && X.chatFotos){ cf.innerHTML = X.chatFotos.map(f => `<img src="${f.src}" alt="${f.alt || ""}" decoding="async" style="object-position:${f.foco || "50% 50%"}">`).join(""); }
+})();
+
+/* Sin viudas: une las dos últimas palabras de cada párrafo */
+document.querySelectorAll("p, h3, h4, .acc-sub, .bub, .reel p").forEach(el => {
+  const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+  let last = null; while(walker.nextNode()){ if(walker.currentNode.nodeValue.trim()) last = walker.currentNode; }
+  if(last){ last.nodeValue = last.nodeValue.replace(/\s+(\S+)\s*$/, " $1"); }
+});
+
+/* =====================================================================
+   INTERACCIONES
+   ===================================================================== */
+const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+document.documentElement.classList.add("js");
+requestAnimationFrame(()=> requestAnimationFrame(()=> document.documentElement.classList.add("loaded")));
+
+// Ola de peso: retraso escalonado por palabra
+document.querySelectorAll(".wave").forEach(t => {
+  t.querySelectorAll(".b, .l").forEach((w,i) => w.style.animationDelay = (i*0.18) + "s");
+});
+const hero = document.querySelector(".hero h1");
+setTimeout(()=> hero.classList.add("in"), 1200);
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+}, {threshold:.12, rootMargin:"0px 0px -6% 0px"});
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+const count = document.getElementById("count"), prog = document.getElementById("progress");
+const secIO = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ count.textContent = e.target.dataset.n + " / 04"; } });
+}, {rootMargin:"-45% 0px -50% 0px"});
+document.querySelectorAll("section[data-n]").forEach(s => secIO.observe(s));
+const onScroll = () => {
+  const h = document.documentElement.scrollHeight - innerHeight;
+  prog.style.setProperty("--p", h > 0 ? Math.min(1, scrollY / h) : 0);
+};
+addEventListener("scroll", onScroll, {passive:true}); onScroll();
+
+const chat = document.getElementById("chat");
+document.querySelectorAll(".acc-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const open = btn.getAttribute("aria-expanded") === "true";
+    document.querySelectorAll(".acc-btn").forEach(b => {
+      b.setAttribute("aria-expanded","false");
+      document.getElementById(b.getAttribute("aria-controls")).classList.remove("open");
+    });
+    if(!open){
+      btn.setAttribute("aria-expanded","true");
+      const panel = document.getElementById(btn.getAttribute("aria-controls"));
+      panel.classList.add("open");
+      if(panel.contains(chat) && !chat.classList.contains("show")){
+        chat.querySelectorAll(".bub").forEach((b,i)=> b.style.transitionDelay = reduce ? "0s" : (0.35 + i*0.75) + "s");
+        requestAnimationFrame(()=> chat.classList.add("show"));
+      }
+      if(!reduce){ setTimeout(()=> btn.scrollIntoView({behavior:"smooth", block:"start"}), 120); }
+    }
+  });
+});
+
+const foot = document.getElementById("story-foot");
+document.querySelectorAll(".opt").forEach(o => o.addEventListener("click", () => {
+  document.querySelectorAll(".opt").forEach(x => x.setAttribute("aria-pressed","false"));
+  o.setAttribute("aria-pressed","true");
+  foot.textContent = "Elegiste " + o.dataset.look;
+}));
+</script>
+</body>
+</html>
