@@ -209,7 +209,8 @@ h2.title{font-size:min(7.8vw,5.2rem);margin-bottom:36px}
 /* ---------- 03 ---------- */
 .redes{display:grid;gap:36px}
 .redes > *{min-width:0}
-.reels{display:grid;grid-auto-flow:column;grid-auto-columns:70%;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 calc(var(--pad)*-1);padding:0 var(--pad) 8px;scrollbar-width:none}
+.reels{display:grid;grid-auto-flow:column;grid-auto-columns:70%;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 calc(var(--pad)*-1);padding:0 var(--pad) 8px;scroll-padding-inline:var(--pad);scrollbar-width:none}
+.reels::after{content:"";width:1px}
 .reels::-webkit-scrollbar{display:none}
 .reel{scroll-snap-align:start;margin:0}
 .reel figcaption{padding-top:12px}
@@ -225,6 +226,7 @@ h2.title{font-size:min(7.8vw,5.2rem);margin-bottom:36px}
 .btn[aria-disabled="true"]{opacity:.4;cursor:not-allowed}
 .btn[aria-disabled="true"]:hover{background:var(--red);border-color:var(--red);color:#fff}
 .btn.outline[aria-disabled="true"]:hover{background:transparent;border-color:var(--fg);color:var(--fg)}
+.btn-arrow{width:14px;height:14px;flex:none}
 .btn .pend{font-size:10px;opacity:.85}
 
 /* ---------- 04 ---------- */
@@ -445,7 +447,7 @@ h2.title{font-size:min(7.8vw,5.2rem);margin-bottom:36px}
         <p class="lead">En mi emprendimiento utilizo las redes para mostrar productos, comunicar novedades y mantener el contacto con los clientes.</p>
         <p class="lead">Me gusta generar contenido que no solamente muestre una prenda, sino que también despierte interés y ayude a venderla.</p>
         <div class="btns">
-          <a class="btn" id="btn-ig" target="_blank" rel="noopener noreferrer">Ver mi Instagram <span aria-hidden="true">↗</span></a>
+          <a class="btn" id="btn-ig" target="_blank" rel="noopener noreferrer">Ver mi Instagram <svg class="btn-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </div>
       <div class="reveal">
@@ -723,7 +725,7 @@ CONFIG.reels.forEach((r,i) => {
     a.removeAttribute("target");
     a.setAttribute("aria-disabled","true");
     a.setAttribute("role","link");
-    a.querySelector("span").outerHTML = `<span class="pend">Link pendiente</span>`;
+    a.querySelector(".btn-arrow").outerHTML = `<span class="pend">Link pendiente</span>`;
     a.addEventListener("click", e => e.preventDefault());
   }
 });
