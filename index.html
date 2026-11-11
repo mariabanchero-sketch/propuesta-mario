@@ -152,7 +152,7 @@ h2.title{font-size:min(7.8vw,5.2rem);margin-bottom:36px}
 .hero-meta{margin-bottom:26px;color:var(--muted)}
 /* Galería */
 .gallery{margin-top:44px}
-.gal-track{--w:27vw;--wa:54vw;display:flex;align-items:center;gap:8px;overflow-x:auto;margin:0 calc(var(--pad)*-1);padding:6px var(--pad) 46px;scrollbar-width:none;cursor:grab}
+.gal-track{--w:27vw;--wa:54vw;display:flex;align-items:center;gap:8px;overflow-x:auto;margin:0 calc(var(--pad)*-1);padding:6px var(--pad) 14px;scrollbar-width:none;cursor:grab}
 .gal-track::-webkit-scrollbar{display:none}
 .gal-track.drag{cursor:grabbing}
 .gal-track.drag img{pointer-events:none}
@@ -739,7 +739,7 @@ CONFIG.reels.forEach((r,i) => {
     const f = document.createElement("figure");
     f.className = "gal-item";
     f.style.transitionDelay = (i*0.08) + "s, " + (i*0.08) + "s, 0s";
-    f.innerHTML = `<div class="ph"><img src="${g.src}" alt="${g.alt}" decoding="async" draggable="false" style="object-position:${g.foco || "50% 50%"}"></div><figcaption><b>${String(i+1).padStart(2,"0")}</b>${g.alt}</figcaption>`;
+    f.innerHTML = `<div class="ph"><img src="${g.src}" alt="${g.alt}" decoding="async" draggable="false" style="object-position:${g.foco || "50% 50%"}"></div>`;
     f.addEventListener("click", () => { if(!dragged) set(i); });
     track.appendChild(f);
   });
@@ -748,7 +748,7 @@ CONFIG.reels.forEach((r,i) => {
   let active = Math.floor(total/2), dragged = false;
   const center = smooth => {
     const it = items[active];
-    track.scrollTo({left: it.offsetLeft + it.offsetWidth/2 - track.clientWidth/2, behavior: smooth && !reduceMotion() ? "smooth" : "auto"});
+    track.scrollTo({left: it.offsetLeft + it.offsetWidth/2 - track.clientWidth/2, behavior: smooth ? "smooth" : "auto"});
   };
   function set(i, auto){
     active = Math.max(0, Math.min(total-1, i));
@@ -761,16 +761,16 @@ CONFIG.reels.forEach((r,i) => {
     center(true); setTimeout(() => center(true), 720);
   }
   // Avance automático mientras la galería está a la vista (se pausa si el usuario interactúa)
-  const prog = document.getElementById("gal-prog"), DUR = 4500;
+  const prog = document.getElementById("gal-prog"), DUR = 3500;
   let timer = null, inView = false, pausedUntil = 0;
-  function restartProg(){ prog.classList.remove("run"); void prog.offsetWidth; if(inView && !reduceMotion() && Date.now() >= pausedUntil) prog.classList.add("run"); }
-  function pauseAuto(){ pausedUntil = Date.now() + 9000; }
-  function tick(){ if(inView && !reduceMotion() && Date.now() >= pausedUntil && !document.hidden){ set((active+1) % total, true); } else { restartProg(); } }
+  function restartProg(){ prog.classList.remove("run"); void prog.offsetWidth; if(inView && Date.now() >= pausedUntil) prog.classList.add("run"); }
+  function pauseAuto(){ pausedUntil = Date.now() + 6000; }
+  function tick(){ if(inView && Date.now() >= pausedUntil && !document.hidden){ set((active+1) % total, true); } else { restartProg(); } }
   prog.style.setProperty("--gdur", DUR/1000 + "s");
   new IntersectionObserver(es => es.forEach(e => {
     inView = e.isIntersecting; clearInterval(timer);
     if(inView){ restartProg(); timer = setInterval(tick, DUR); }
-  }), {threshold:.35}).observe(track);
+  }), {threshold:.15}).observe(track);
   prev.addEventListener("click", () => set(active-1)); next.addEventListener("click", () => set(active+1));
   track.addEventListener("keydown", e => { if(e.key === "ArrowRight"){ e.preventDefault(); set(active+1); } if(e.key === "ArrowLeft"){ e.preventDefault(); set(active-1); } });
   addEventListener("resize", () => center(false));
