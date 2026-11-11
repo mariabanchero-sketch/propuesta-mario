@@ -734,17 +734,21 @@ CONFIG.reels.forEach((r,i) => {
     });
   }
   function go(i){ active = ((i % n) + n) % n; render(); }
-  // Giro automático (se pausa unos segundos si alguien interactúa)
-  let pausedUntil = 0, inView = false, timer = null;
+  // Giro automático (se pausa unos segundos si alguien interactúa).
+  // No depende de IntersectionObserver: cada tic mide si la galería está en pantalla.
+  let pausedUntil = 0;
   const hold = () => { pausedUntil = Date.now() + 5000; };
-  const tick = () => { if(inView && !document.hidden && Date.now() >= pausedUntil) go(active + 1); };
-  new IntersectionObserver(es => es.forEach(e => {
-    inView = e.isIntersecting;
-    if(inView){ wrap.classList.add("in"); clearInterval(timer); timer = setInterval(tick, DUR); } else clearInterval(timer);
-  }), {threshold:.2}).observe(stage);
+  const visible = () => { const r = stage.getBoundingClientRect(); return r.bottom > 0 && r.top < (window.innerHeight || document.documentElement.clientHeight); };
+  const reveal = () => { if(!wrap.classList.contains("in") && visible()) wrap.classList.add("in"); };
+  const tick = () => { reveal(); if(wrap.classList.contains("in") && visible() && !document.hidden && Date.now() >= pausedUntil) go(active + 1); };
+  setInterval(tick, DUR);
+  addEventListener("scroll", reveal, {passive:true});
+  addEventListener("load", reveal);
+  setTimeout(reveal, 250);
   // Deslizar con el dedo o arrastrar con el mouse
   let sx = null, moved = false;
   stage.addEventListener("pointerdown", e => { sx = e.clientX; moved = false; });
+  addEventListener("pointercancel", () => { sx = null; });
   addEventListener("pointermove", e => { if(sx !== null && Math.abs(e.clientX - sx) > 8) moved = true; });
   addEventListener("pointerup", e => {
     if(sx === null) return; const dx = e.clientX - sx; sx = null;
